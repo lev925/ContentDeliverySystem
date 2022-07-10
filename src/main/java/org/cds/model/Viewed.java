@@ -23,7 +23,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "viewed")
+@Table
 public class Viewed implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")

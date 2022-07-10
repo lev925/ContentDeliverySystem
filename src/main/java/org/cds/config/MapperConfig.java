@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class MapperConfig {
 
-    /*@Component
+   /* @Component
     public class OfferMapper extends ConfigurableMapper {
         @Override
         protected void configure(MapperFactory factory) {

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.UUID;
 
 public interface ViewedService {
-    Viewed saveViewed(Viewed viewed);
+    Viewed saveViewed(UUID contentGuid,UUID userGuid);
 
     Viewed findById(UUID id);
 

@@ -1,6 +1,10 @@
 package org.cds.service;
 
+import org.cds.model.Content;
+import org.cds.model.User;
 import org.cds.model.Viewed;
+import org.cds.repository.ContentRepository;
+import org.cds.repository.UsersRepository;
 import org.cds.repository.ViewedRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +19,18 @@ import java.util.UUID;
 public class ViewedServiceImp implements ViewedService {
     @Autowired
     private ViewedRepository viewedRepository;
-
+    @Autowired
+    private UsersRepository usersRepository;
+    @Autowired
+    private ContentRepository contentRepository;
     @Autowired
     RestTemplate restTemplate;
 
     @Override
-    public Viewed saveViewed(Viewed viewed) {
+    public Viewed saveViewed(UUID contentGuid,UUID userGuid) {
+        User user = usersRepository.findById(userGuid).orElseGet(User::new);
+        Content content = contentRepository.findById(contentGuid).orElseGet(Content::new);
+        Viewed viewed = Viewed.builder().content(content).user(user).build();
         return viewedRepository.save(viewed);
     }
 

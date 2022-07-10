@@ -7,6 +7,7 @@ import org.cds.repository.TargetRepository;
 import org.cds.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -17,10 +18,12 @@ public class TargetServiceImp implements TargetService {
     private TargetRepository targetRepository;
     @Autowired
     private UsersRepository usersRepository;
+    @Autowired
+    RestTemplate restTemplate;
 
     @Override
     public Target findById(UUID id) {
-        return targetRepository.findById(id).get();
+        return targetRepository.findById(id).orElseGet(Target::new);
     }
 
     @Override
@@ -35,6 +38,8 @@ public class TargetServiceImp implements TargetService {
     @Override
     public List<Target> getTargetByUserIdAndPage(UUID id, Page page){
         User user = usersRepository.findById(id).orElseGet(User::new);
-        return targetRepository.getTargetsByUserAndPageOrderByPriority(user,page);
+        List<Target> targets = targetRepository.getTargetsByUserAndPageOrderByPriority(user,page);
+        restTemplate.postForEntity("http://localhost:8080/target/get", targets, Target[].class);
+        return targets;
     }
 }

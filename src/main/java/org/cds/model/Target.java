@@ -22,13 +22,11 @@ import java.util.UUID;
 @Builder
 @EqualsAndHashCode(of = {"guid"})
 @Entity
-@ToString(exclude = {"content"})
-@Table(name = "target")
+@Table
 public class Target implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID guid;
-    @JoinColumn(name = "user_guid")
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @JoinColumn(name = "content_guid")

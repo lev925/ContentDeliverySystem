@@ -21,13 +21,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 @Entity
-@TypeDef(name = "json", typeClass = JsonStringType.class)
 @Table(name = "content")
 public class Content implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID guid;
-    @Type(type = "json")
-    @Column(name = "data", columnDefinition = "json")
-    private DataContent data;
+    @Column(name = "data", columnDefinition = "text")
+    private String data;
 }

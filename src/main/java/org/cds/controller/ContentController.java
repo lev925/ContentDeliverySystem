@@ -19,10 +19,8 @@ public class ContentController {
         return contentService.getContentById(id);
     }
     @PostMapping ("/content/save")
-    private Content saveContent(@RequestBody DataContent dataContent){
-        dataContent.getClass();
-
-        Content content = Content.builder().data(dataContent).build();
+    private Content saveContent(@RequestBody String data){
+        Content content = Content.builder().data(data).build();
         return contentService.saveContent(content);
     }
 }
