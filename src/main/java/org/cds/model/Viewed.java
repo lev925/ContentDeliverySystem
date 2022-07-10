@@ -32,6 +32,6 @@ public class Viewed implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
     @JoinColumn(name = "content_guid")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Content content;
 }

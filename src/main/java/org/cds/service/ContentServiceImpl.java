@@ -14,7 +14,7 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     private ContentRepository contentRepository;
 
-    public Content getContentById(UUID id) {
+    public Content findContentById(UUID id) {
         Optional<Content> byId = contentRepository.findById(id);
         return byId.orElseGet(Content::new);
     }

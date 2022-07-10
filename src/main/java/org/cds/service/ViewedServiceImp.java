@@ -19,18 +19,9 @@ import java.util.UUID;
 public class ViewedServiceImp implements ViewedService {
     @Autowired
     private ViewedRepository viewedRepository;
-    @Autowired
-    private UsersRepository usersRepository;
-    @Autowired
-    private ContentRepository contentRepository;
-    @Autowired
-    RestTemplate restTemplate;
 
     @Override
-    public Viewed saveViewed(UUID contentGuid,UUID userGuid) {
-        User user = usersRepository.findById(userGuid).orElseGet(User::new);
-        Content content = contentRepository.findById(contentGuid).orElseGet(Content::new);
-        Viewed viewed = Viewed.builder().content(content).user(user).build();
+    public Viewed saveViewed(Viewed viewed) {
         return viewedRepository.save(viewed);
     }
 
@@ -43,14 +34,5 @@ public class ViewedServiceImp implements ViewedService {
     public List<Viewed> findAllViewed() {
         return viewedRepository.findAll();
     }
-    @Scheduled(fixedRate = 1000)
-    public void sendRequest() {
-        List<Viewed> viewed = viewedRepository.findAll();
-        ResponseEntity<Viewed[]> response = restTemplate.postForEntity(
-                "http://localhost:8080", viewed, Viewed[].class);
-        System.out.println(response.getStatusCode());
-        for (Viewed o : response.getBody()) {
-            System.err.println(o);
-        }
-    }
+
 }

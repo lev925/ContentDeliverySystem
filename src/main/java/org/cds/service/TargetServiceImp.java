@@ -36,10 +36,8 @@ public class TargetServiceImp implements TargetService {
         return targetRepository.findAll();
     }
     @Override
-    public List<Target> getTargetByUserIdAndPage(UUID id, Page page){
-        User user = usersRepository.findById(id).orElseGet(User::new);
+    public List<Target> getTargetByUserIdAndPage(User user, Page page){
         List<Target> targets = targetRepository.getTargetsByUserAndPageOrderByPriority(user,page);
-        restTemplate.postForEntity("http://localhost:8080/target/get", targets, Target[].class);
         return targets;
     }
 }
