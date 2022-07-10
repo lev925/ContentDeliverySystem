@@ -14,10 +14,10 @@ import java.util.UUID;
 public class TargetController {
     @Autowired
     private TargetService targetService;
-    @RequestMapping(path = "/target/get/{user-id}", method = RequestMethod.GET)
-    public List<Target> getContentById(@PathVariable("user-id") UUID id){
-        return targetService.getTargetByUserId(id);
-    }
+//    @RequestMapping(path = "/target/get/{user-id}", method = RequestMethod.GET)
+//    public List<Target> getContentById(@PathVariable("user-id") UUID id){
+//        return targetService.getTargetByUserIdAndPage(id);
+//    }
 
     @RequestMapping(path = "/target/get", method = RequestMethod.GET)
     public List<Target> getAllTarget(){

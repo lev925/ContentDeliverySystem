@@ -1,5 +1,6 @@
 package org.cds.service;
 
+import org.cds.model.Page;
 import org.cds.model.Target;
 
 import java.util.List;
@@ -9,5 +10,5 @@ public interface TargetService {
     Target findById(UUID id);
     Target saveTarget(Target target);
     List<Target> getAllTarget();
-    List<Target> getTargetByUserId(UUID id);
+    List<Target> getTargetByUserIdAndPage(UUID id, Page page);
 }

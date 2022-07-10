@@ -1,5 +1,6 @@
 package org.cds.service;
 
+import org.cds.model.Page;
 import org.cds.model.Target;
 import org.cds.model.User;
 import org.cds.repository.TargetRepository;
@@ -32,8 +33,8 @@ public class TargetServiceImp implements TargetService {
         return targetRepository.findAll();
     }
     @Override
-    public List<Target> getTargetByUserId(UUID id){
+    public List<Target> getTargetByUserIdAndPage(UUID id, Page page){
         User user = usersRepository.findById(id).orElseGet(User::new);
-        return targetRepository.getTargetsByUserOrderByPriority(user);
+        return targetRepository.getTargetsByUserAndPageOrderByPriority(user,page);
     }
 }

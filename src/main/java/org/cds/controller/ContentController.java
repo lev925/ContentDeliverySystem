@@ -1,6 +1,7 @@
 package org.cds.controller;
 
 import org.cds.model.Content;
+import org.cds.model.DataContent;
 import org.cds.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,7 +19,10 @@ public class ContentController {
         return contentService.getContentById(id);
     }
     @PostMapping ("/content/save")
-    private Content saveContent(@RequestBody Content content){
+    private Content saveContent(@RequestBody DataContent dataContent){
+        dataContent.getClass();
+
+        Content content = Content.builder().data(dataContent).build();
         return contentService.saveContent(content);
     }
 }
