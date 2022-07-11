@@ -1,48 +1,52 @@
 import org.cds.Application;
-import org.cds.model.Content;
-import org.cds.model.Target;
-import org.cds.model.User;
-import org.cds.service.ContentService;
-import org.cds.service.TargetService;
-import org.cds.service.UsersService;
-import org.cds.service.ViewedService;
-import org.junit.jupiter.api.BeforeAll;
+import org.cds.controller.ContentController;
+import org.cds.controller.TargetController;
+import org.cds.controller.ViewedController;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.util.LinkedList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @SpringBootTest(classes = Application.class)
 @ContextConfiguration
+@AutoConfigureMockMvc
 public class TestCDS {
     @Autowired
-    private static ContentService contentService;
+    private MockMvc mvc;
     @Autowired
-    private static TargetService targetService;
+    ContentController contentController;
     @Autowired
-    private static UsersService usersService;
+    ViewedController viewedController;
     @Autowired
-    private static ViewedService viewedService;
-    @BeforeAll
-    static void fillBd(){
+    TargetController targetController;
 
 
+    @Test
+    void targetSearchTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/target/get"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
     @Test
-    void usersTest(){
-        List<User> users = new LinkedList<>();
-        users.add(User.builder().email("qwe@gmail.com").phone("789562").systemName("Anton").build());
-        users.add(User.builder().email("asd@gmail.com").phone("256562").systemName("Dima").build());
-        users.add(User.builder().email("zxc@gmail.com").phone("278962").systemName("Peter").build());
-        usersService.saveAllUser(users);
-        User user = User.builder().email("qwe@gmail.com").phone("789562").systemName("Anton").build();
-        usersService.saveUser(user);
-        assertEquals(user,usersService.findById(user.getGuid()));
+    void contentSearchTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/content/get/af3cfff8-c9ed-411a-aa58-5c3247a2a5a4"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
     }
+    @Test
+    void viewedSearchTest() throws Exception {
+        mvc.perform(MockMvcRequestBuilders.get("/viewed/get"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON));
+    }
+
 }

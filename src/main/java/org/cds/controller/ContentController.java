@@ -13,10 +13,10 @@ public class ContentController {
     @Autowired
     private ContentService contentService;
 
-    @RequestMapping(path = "/content/{content-id}", method = RequestMethod.GET)
-    private String getUserById(@PathVariable("content-id") UUID id) {
+    @RequestMapping(path = "/content/get/{content-id}", method = RequestMethod.GET)
+    private Content getUserById(@PathVariable("content-id") UUID id) {
 
-        return contentService.findContentById(id).getData();
+        return contentService.findContentById(id);
     }
     @PostMapping ("/content/save")
     private Content saveContent(@RequestBody String data){

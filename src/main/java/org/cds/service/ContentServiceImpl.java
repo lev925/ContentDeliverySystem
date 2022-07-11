@@ -6,6 +6,7 @@ import org.cds.model.Content;
 import org.cds.repository.ContentRepository;
 
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -14,13 +15,21 @@ public class ContentServiceImpl implements ContentService {
     @Autowired
     private ContentRepository contentRepository;
 
+    @Override
     public Content findContentById(UUID id) {
         Optional<Content> byId = contentRepository.findById(id);
         return byId.orElseGet(Content::new);
     }
+
     @Transactional
-    public Content saveContent(Content content){
+    @Override
+    public Content saveContent(Content content) {
         return contentRepository.save(content);
+    }
+
+    @Override
+    public List<Content> findAllContent() {
+        return contentRepository.findAll();
     }
 
 

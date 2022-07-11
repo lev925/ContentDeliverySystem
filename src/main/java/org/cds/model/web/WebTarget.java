@@ -46,6 +46,4 @@ public class WebTarget implements Serializable {
             example = "2013-02-01 11:12:56.000000")
     private Date endDate;
 
-
-
 }

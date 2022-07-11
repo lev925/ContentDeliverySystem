@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class TargetServiceImp implements TargetService {
     @Autowired
@@ -31,13 +32,14 @@ public class TargetServiceImp implements TargetService {
     public Target saveTarget(Target target) {
         return targetRepository.save(target);
     }
+
     @Override
-    public List<Target> getAllTarget(){
+    public List<Target> getAllTarget() {
         return targetRepository.findAll();
     }
+
     @Override
-    public List<Target> getTargetByUserIdAndPage(User user, Page page){
-        List<Target> targets = targetRepository.getTargetsByUserAndPageOrderByPriority(user,page);
-        return targets;
+    public List<Target> getTargetByUserIdAndPage(User user, Page page) {
+        return targetRepository.getTargetsByUserAndPageOrderByPriority(user, page);
     }
 }

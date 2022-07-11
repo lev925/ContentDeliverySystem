@@ -4,9 +4,10 @@ import org.cds.model.User;
 import org.cds.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.UUID;
+
 @Service
 public class UsersServiceImp implements UsersService {
     @Autowired
@@ -19,12 +20,9 @@ public class UsersServiceImp implements UsersService {
     }
 
     @Override
+    @Transactional
     public User saveUser(User user) {
         return usersRepository.save(user);
-    }
-    @Override
-    public void saveAllUser(List<User> users) {
-        usersRepository.saveAll(users);
     }
 
 }

@@ -18,10 +18,7 @@ dependencies {
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
     implementation 'org.postgresql:postgresql:42.4.0'
-    implementation 'com.vladmihalcea:hibernate-types-52:2.16.2'
-    // https://mvnrepository.com/artifact/ma.glasnost.orika/orika-core
     implementation 'ma.glasnost.orika:orika-core:1.5.4'
-    // https://mvnrepository.com/artifact/io.springfox/springfox-boot-starter
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
 }

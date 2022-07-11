@@ -67,14 +67,8 @@ public class WebViewedServiceImp implements WebViewedService {
         }
         return res;
     }
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 60000)
     public void sendRequest() {
-        /*List<Viewed> viewedList = viewedService.findAllViewed();
-        List<WebViewed> webViewedList = new ArrayList<>();
-        for (Viewed viewed : viewedList){
-            WebViewed webViewed = mapper(viewed);
-            webViewedList.add(webViewed);
-        }*/
 
         WebViewed webViewed = WebViewed.builder()
                 .content(contentService.findContentById(UUID.fromString("46f85973-64ed-4aa3-9164-e455448b9028")))
