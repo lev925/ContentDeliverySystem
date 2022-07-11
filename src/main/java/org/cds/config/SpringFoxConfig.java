@@ -14,6 +14,7 @@ public class SpringFoxConfig {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("org.cds")).build();
+                .apis(RequestHandlerSelectors.basePackage("org.cds"))
+                .build();
     }
 }

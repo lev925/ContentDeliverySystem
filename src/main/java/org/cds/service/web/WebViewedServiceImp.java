@@ -76,7 +76,7 @@ public class WebViewedServiceImp implements WebViewedService {
             webViewedList.add(webViewed);
         }
         ResponseEntity<WebViewed[]> response = restTemplate.postForEntity(
-                "http://localhost:8080/viedwed/get", webViewedList.toArray(), WebViewed[].class);
+                "http://localhost:8080/",webViewedList, WebViewed[].class);
         System.out.println(response.getStatusCode());
         for (WebViewed o : response.getBody()) {
             System.err.println(o);
