@@ -11,12 +11,12 @@ import org.springframework.stereotype.Component;
 @Configuration
 public class MapperConfig {
 
-   @Component
+ /*   @Component
     public class TargetMapper extends ConfigurableMapper {
         @Override
         protected void configure(MapperFactory factory) {
             factory.classMap(Target.class, WebTarget.class).byDefault()
                     .register();
         }
-    }
+    }*/
 }
