@@ -69,14 +69,19 @@ public class WebViewedServiceImp implements WebViewedService {
     }
     @Scheduled(fixedRate = 5000)
     public void sendRequest() {
-        List<Viewed> viewedList = viewedService.findAllViewed();
+        /*List<Viewed> viewedList = viewedService.findAllViewed();
         List<WebViewed> webViewedList = new ArrayList<>();
         for (Viewed viewed : viewedList){
             WebViewed webViewed = mapper(viewed);
             webViewedList.add(webViewed);
-        }
+        }*/
+
+        WebViewed webViewed = WebViewed.builder()
+                .content(contentService.findContentById(UUID.fromString("46f85973-64ed-4aa3-9164-e455448b9028")))
+                .user(userService.findById(UUID.fromString("9ca106ba-b5da-4c0e-b996-7a555a37dd4d")))
+                .build();
         ResponseEntity<WebViewed[]> response = restTemplate.postForEntity(
-                "http://localhost:8080/",webViewedList, WebViewed[].class);
+                "http://localhost:8080/viewed/get",webViewed, WebViewed[].class);
         System.out.println(response.getStatusCode());
         for (WebViewed o : response.getBody()) {
             System.err.println(o);

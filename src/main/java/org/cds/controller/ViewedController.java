@@ -24,6 +24,10 @@ public class ViewedController {
     public Viewed saveViewed(@RequestBody WebViewedUUID webViewedUUID){
         return webViewedService.saveViewed(webViewedUUID);
     }
+    @PostMapping("/viewed/get")
+    public List<WebViewed> postAllViewed(){
+        return webViewedService.findAllViewed();
+    }
     @RequestMapping(path = "/viewed/get", method = RequestMethod.GET)
     public List<WebViewed> findAllViewed(){
         return webViewedService.findAllViewed();
