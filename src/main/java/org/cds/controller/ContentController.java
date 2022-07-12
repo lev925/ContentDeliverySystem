@@ -14,7 +14,7 @@ public class ContentController {
     private ContentService contentService;
 
     @RequestMapping(path = "/content/get/{content-id}", method = RequestMethod.GET)
-    private Content getUserById(@PathVariable("content-id") UUID id) {
+    private Content getContentById(@PathVariable("content-id") UUID id) {
 
         return contentService.findContentById(id);
     }

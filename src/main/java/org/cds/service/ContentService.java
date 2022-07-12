@@ -9,23 +9,23 @@ public interface ContentService {
     /**
      * Метод находит контент и возврашает его
      *
-     * @param id - Индификатро контента
-     * @return - данные контента
+     * @param id Индификатро контента
+     * @return Контент
      */
     Content findContentById(UUID id);
 
     /**
      * Метод сохраняет контент в бд
      *
-     * @param content - Контент
-     * @return - Контент с указанием guid
+     * @param content Контент
+     * @return Созданный контент
      */
     Content saveContent(Content content);
 
     /**
      * Метод находит все сущности контента и возврашает их
      *
-     * @return - Весь контент из бд
+     * @return Весь контент из бд
      */
     List<Content> findAllContent();
 }

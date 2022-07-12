@@ -9,7 +9,7 @@ public interface ViewedService {
     /**
      * Метод сохраняет просмотр в бд
      * @param viewed - Просмотр
-     * @return Данные просмотра с guid
+     * @return Данные просмотра
      */
     Viewed saveViewed(Viewed viewed);
 

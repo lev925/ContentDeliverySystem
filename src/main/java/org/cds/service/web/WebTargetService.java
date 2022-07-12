@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 public interface WebTargetService {
+    /**
+     *
+     * @param webTargetFilter
+     * @return
+     */
     List<WebTarget> getAllTargetsByUserAndPage(WebTargetFilter webTargetFilter);
     WebTarget findById(UUID id);
     Target saveTarget(WebTarget target);

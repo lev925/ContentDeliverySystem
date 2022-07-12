@@ -4,7 +4,6 @@ import org.cds.model.Page;
 import org.cds.model.Target;
 import org.cds.model.User;
 import org.cds.repository.TargetRepository;
-import org.cds.repository.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -17,8 +16,6 @@ import java.util.UUID;
 public class TargetServiceImp implements TargetService {
     @Autowired
     private TargetRepository targetRepository;
-    @Autowired
-    private UsersRepository usersRepository;
     @Autowired
     RestTemplate restTemplate;
 

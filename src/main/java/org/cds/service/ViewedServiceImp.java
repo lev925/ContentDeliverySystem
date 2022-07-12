@@ -1,6 +1,5 @@
 package org.cds.service;
 
-
 import org.cds.model.Viewed;
 import org.cds.repository.ViewedRepository;
 import org.springframework.beans.factory.annotation.Autowired;

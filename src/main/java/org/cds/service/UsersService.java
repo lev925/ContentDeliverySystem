@@ -2,7 +2,6 @@ package org.cds.service;
 
 import org.cds.model.User;
 
-import java.util.List;
 import java.util.UUID;
 
 public interface UsersService {
@@ -16,7 +15,7 @@ public interface UsersService {
     /**
      * Метод сохраняет пользователя в бд
      * @param user - Пользователь
-     * @return - Данные пользователя с указанием guid
+     * @return - Данные пользователя
      */
     User saveUser(User user);
 
