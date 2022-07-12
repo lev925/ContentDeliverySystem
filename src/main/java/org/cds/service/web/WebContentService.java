@@ -2,6 +2,8 @@ package org.cds.service.web;
 
 import org.cds.model.web.WebContent;
 
+import java.util.UUID;
+
 public interface WebContentService {
     /**
      * Метод находит контент и возврашает его
@@ -9,7 +11,7 @@ public interface WebContentService {
      * @param id Индификатро контента
      * @return данные контента
      */
-    WebContent findContentById(String id);
+    WebContent findContentById(UUID id);
 
     /**
      * Сохраняет контент в бд

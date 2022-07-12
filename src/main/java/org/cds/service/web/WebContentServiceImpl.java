@@ -18,8 +18,8 @@ public class WebContentServiceImpl implements WebContentService {
     MapperFacade mapperFacade;
 
     @Override
-    public WebContent findContentById(String id) {
-        return mapperFacade.map(contentService.findContentById(UUID.fromString(id)), WebContent.class);
+    public WebContent findContentById(UUID id) {
+        return mapperFacade.map(contentService.findContentById(id), WebContent.class);
     }
 
     @Override
