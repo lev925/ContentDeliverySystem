@@ -20,7 +20,7 @@ public class ViewedController {
     WebViewedService webViewedService;
 
     @PostMapping(path = "/viewed/save")
-    public Viewed saveViewed(@RequestBody WebViewed webViewed){
+    public WebViewed saveViewed(@RequestBody WebViewed webViewed){
         return webViewedService.saveViewed(webViewed);
     }
     @PostMapping("/viewed/get")

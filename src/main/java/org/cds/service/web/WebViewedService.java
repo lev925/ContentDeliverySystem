@@ -13,7 +13,7 @@ public interface WebViewedService {
      * @param webViewed данные для создания просмотра в виде uuid
      * @return Данные просмотра
      */
-    Viewed saveViewed(WebViewed webViewed);
+    WebViewed saveViewed(WebViewed webViewed);
 
     /**
      * Метод находит просмотр по uuid

@@ -3,6 +3,7 @@ package org.cds.service.web;
 import org.cds.model.Target;
 import org.cds.model.User;
 import org.cds.model.web.WebTarget;
+import org.cds.model.web.WebTargetASM;
 import org.cds.model.web.WebTargetFilter;
 import org.cds.service.ContentService;
 import org.cds.service.TargetService;
@@ -10,6 +11,7 @@ import org.cds.service.UsersService;
 import org.cds.service.mapper.TargetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,9 +48,18 @@ class WebTargetServiceImp implements WebTargetService {
     }
 
     @Override
-    public Target saveTarget(WebTarget webTarget) {
-        Target target = targetMapper.webTargetToTarget(webTarget);
+    @Transactional
+    public Target saveTarget(WebTargetASM webTargetASM) {
+        Target target = Target.builder()
+                .content(contentService.findContentById(webTargetASM.getContentId()))
+                .user(usersService.findById(webTargetASM.getUserId()))
+                .endDate(webTargetASM.getEndDate())
+                .startDate(webTargetASM.getStartDate())
+                .page(webTargetASM.getPage())
+                .priority(webTargetASM.getPriority())
+                .build();
         return targetService.saveTarget(target);
+
     }
 
     @Override

@@ -31,12 +31,12 @@ public class WebViewedServiceImp implements WebViewedService {
     ViewedMapper viewedMapper;
 
     @Override
-    public Viewed saveViewed(WebViewed webViewed) {
+    public WebViewed saveViewed(WebViewed webViewed) {
         User user = userService.findById(webViewed.getUserId());
         Content content = contentService.findContentById(webViewed.getContentId());
         Viewed viewed = Viewed.builder().user(user).content(content).build();
         viewedService.saveViewed(viewed);
-        return viewed;
+        return webViewed;
     }
 
     @Override
