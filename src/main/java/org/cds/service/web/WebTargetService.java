@@ -2,6 +2,7 @@ package org.cds.service.web;
 
 import org.cds.model.Target;
 import org.cds.model.web.WebTarget;
+import org.cds.model.web.WebTargetASM;
 import org.cds.model.web.WebTargetFilter;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public interface WebTargetService {
      * @param target Таргет
      * @return Данные таргета
      */
-    Target saveTarget(WebTarget target);
+    Target saveTarget(WebTargetASM target);
 
     /**
      * Метод находит все сущности таргета и возврашает их

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Check;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,11 +28,13 @@ import java.util.UUID;
 @EqualsAndHashCode(of = {"guid"})
 @Entity
 @Table
+@Check(constraints = "start_date < end_date")
 public class Target implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID guid;
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_guid")
+    @ManyToOne(fetch = FetchType.EAGER)
     private User user;
     @JoinColumn(name = "content_guid")
     @ManyToOne(fetch = FetchType.EAGER)

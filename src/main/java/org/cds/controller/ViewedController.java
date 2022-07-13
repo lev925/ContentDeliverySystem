@@ -2,7 +2,6 @@ package org.cds.controller;
 
 import org.cds.model.Viewed;
 import org.cds.model.web.WebViewed;
-import org.cds.model.web.WebViewedUUID;
 import org.cds.service.web.WebViewedService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +20,8 @@ public class ViewedController {
     WebViewedService webViewedService;
 
     @PostMapping(path = "/viewed/save")
-    public Viewed saveViewed(@RequestBody WebViewedUUID webViewedUUID){
-        return webViewedService.saveViewed(webViewedUUID);
+    public WebViewed saveViewed(@RequestBody WebViewed webViewed){
+        return webViewedService.saveViewed(webViewed);
     }
     @PostMapping("/viewed/get")
     public List<WebViewed> postAllViewed(){
