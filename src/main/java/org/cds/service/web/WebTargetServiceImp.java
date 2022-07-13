@@ -1,6 +1,5 @@
 package org.cds.service.web;
 
-import ma.glasnost.orika.MapperFacade;
 import org.cds.model.Target;
 import org.cds.model.User;
 import org.cds.model.web.WebTarget;
@@ -23,8 +22,6 @@ class WebTargetServiceImp implements WebTargetService {
     UsersService usersService;
     @Autowired
     ContentService contentService;
-    @Autowired
-    MapperFacade mapperFacade;
 
     private WebTarget mapper(Target target){
         WebTarget webTarget = WebTarget.builder()

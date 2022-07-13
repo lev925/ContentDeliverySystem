@@ -35,6 +35,9 @@ public class WebViewedServiceImp implements WebViewedService {
                 .build();
         return webViewed;
     }
+    private Viewed mapper(WebViewed webViewed){
+        return null;
+    }
     @Override
     public Viewed saveViewed(WebViewedUUID webViewedUUID) {
         User user = userService.findById(webViewedUUID.getUserID());
@@ -76,10 +79,6 @@ public class WebViewedServiceImp implements WebViewedService {
                 .build();
         ResponseEntity<WebViewed[]> response = restTemplate.postForEntity(
                 "http://localhost:8080/viewed/get",webViewed, WebViewed[].class);
-        System.out.println(response.getStatusCode());
-        for (WebViewed o : response.getBody()) {
-            System.err.println(o);
-        }
     }
 
 }

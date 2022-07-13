@@ -31,7 +31,8 @@ public class Target implements Serializable {
     @Id
     @GeneratedValue(generator = "UUID")
     private UUID guid;
-    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_guid")
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     private User user;
     @JoinColumn(name = "content_guid")
     @ManyToOne(fetch = FetchType.EAGER)
