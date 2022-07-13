@@ -7,6 +7,7 @@ import org.cds.model.web.WebTargetFilter;
 import org.cds.service.ContentService;
 import org.cds.service.TargetService;
 import org.cds.service.UsersService;
+import org.cds.service.mapper.TargetMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,18 +23,9 @@ class WebTargetServiceImp implements WebTargetService {
     UsersService usersService;
     @Autowired
     ContentService contentService;
+    @Autowired
+    TargetMapper targetMapper;
 
-    private WebTarget mapper(Target target){
-        WebTarget webTarget = WebTarget.builder()
-                .user(target.getUser())
-                .content(target.getContent())
-                .page(target.getPage())
-                .priority(target.getPriority())
-                .endDate(target.getEndDate())
-                .startDate(target.getStartDate())
-                .build();
-        return webTarget;
-    }
     @Override
     public List<WebTarget> getAllTargetsByUserAndPage(WebTargetFilter webTargetFilter) {
 
@@ -41,7 +33,7 @@ class WebTargetServiceImp implements WebTargetService {
         List<Target> targetForUser = targetService.getTargetByUserIdAndPage(user,webTargetFilter.getPageName());
         List<WebTarget> webTargets = new ArrayList<>();
         for (Target o : targetForUser) {
-            webTargets.add(mapper(o));
+            webTargets.add(targetMapper.targetToWebTarget(o));
         }
         return webTargets;
 
@@ -50,20 +42,12 @@ class WebTargetServiceImp implements WebTargetService {
     @Override
     public WebTarget findById(UUID id) {
         Target target = targetService.findById(id);
-        WebTarget webTarget = mapper(target);
-        return webTarget;
+        return targetMapper.targetToWebTarget(target);
     }
 
     @Override
     public Target saveTarget(WebTarget webTarget) {
-        Target target = Target.builder().
-                content(webTarget.getContent())
-                .user(webTarget.getUser())
-                .page(webTarget.getPage())
-                .endDate(webTarget.getEndDate())
-                .startDate(webTarget.getStartDate())
-                .priority(webTarget.getPriority())
-                .build();
+        Target target = targetMapper.webTargetToTarget(webTarget);
         return targetService.saveTarget(target);
     }
 
@@ -73,7 +57,7 @@ class WebTargetServiceImp implements WebTargetService {
         List<Target> targetForUser = targetService.getAllTarget();
         List<WebTarget> webTargets = new ArrayList<>();
         for (Target o : targetForUser) {
-            webTargets.add(mapper(o));
+            webTargets.add(targetMapper.targetToWebTarget(o));
         }
         return webTargets;
     }

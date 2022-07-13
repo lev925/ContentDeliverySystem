@@ -8,7 +8,6 @@ import org.cds.model.Content;
 import org.cds.model.Page;
 import org.cds.model.User;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
 
