@@ -34,10 +34,10 @@ public class Target implements Serializable {
     @GeneratedValue(generator = "UUID")
     private UUID guid;
     @JoinColumn(name = "user_guid")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER)
     private User user;
     @JoinColumn(name = "content_guid")
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
     private Content content;
     @Column
     private Page page;
