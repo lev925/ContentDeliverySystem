@@ -1,11 +1,8 @@
 package org.cds.controller;
 
-import org.cds.model.Page;
-import org.cds.model.Target;
 import org.cds.model.web.WebTarget;
 import org.cds.model.web.WebTargetASM;
 import org.cds.model.web.WebTargetFilter;
-import org.cds.service.TargetService;
 import org.cds.service.web.WebTargetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

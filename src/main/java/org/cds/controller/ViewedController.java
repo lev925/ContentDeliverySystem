@@ -1,6 +1,5 @@
 package org.cds.controller;
 
-import org.cds.model.Viewed;
 import org.cds.model.web.WebViewed;
 import org.cds.service.web.WebViewedService;
 import org.springframework.beans.factory.annotation.Autowired;
